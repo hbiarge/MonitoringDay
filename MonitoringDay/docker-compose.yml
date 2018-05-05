@@ -1,0 +1,8 @@
+version: '3'
+
+services:
+  productimagesapi:
+    image: productimagesapi
+    build:
+      context: .
+      dockerfile: ProductImagesApi/Dockerfile
