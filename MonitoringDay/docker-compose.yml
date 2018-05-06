@@ -6,8 +6,19 @@ services:
     build:
       context: .
       dockerfile: ProductImagesApi/Dockerfile
+    depends_on:
+      - zipkin
+
   zipkin:
     image: openzipkin/zipkin
+    environment:
+      - STORAGE_TYPE=mem
+      # Uncomment to disable scribe
+      # - SCRIBE_ENABLED=false
+      # Uncomment to enable self-tracing
+      # - SELF_TRACING_ENABLED=true
+      # Uncomment to enable debug logging
+      # - JAVA_OPTS=-Dlogging.level.zipkin=DEBUG
     ports:
       # Port used for the Zipkin UI and HTTP Api
       - 9411:9411
