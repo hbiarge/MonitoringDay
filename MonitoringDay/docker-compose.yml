@@ -6,3 +6,8 @@ services:
     build:
       context: .
       dockerfile: ProductImagesApi/Dockerfile
+  zipkin:
+    image: openzipkin/zipkin
+    ports:
+      # Port used for the Zipkin UI and HTTP Api
+      - 9411:9411

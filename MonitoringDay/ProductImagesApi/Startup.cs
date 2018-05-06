@@ -73,7 +73,7 @@ namespace ProductImagesApi
 
             var logger = new TracingLogger(LoggerFactory, "zipkin4net");
             var httpSender = new HttpZipkinSender(zipkinCollector, "application/json");
-            var tracer = new ZipkinTracer(httpSender, new JSONSpanSerializer());
+            var tracer = new ZipkinTracer(httpSender, new JSONSpanSerializer(), new Statistics());
 
             TraceManager.SamplingRate = 1.0f;
             TraceManager.RegisterTracer(tracer);
