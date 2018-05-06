@@ -13,6 +13,7 @@
     <PackageReference Include="BeatPulse" Version="1.4.3" />
     <PackageReference Include="Microsoft.AspNetCore.All" Version="2.0.7" />
     <PackageReference Include="Nexogen.Libraries.Metrics.Prometheus.AspCore" Version="3.0.1" />
+    <PackageReference Include="zipkin4net" Version="1.2.0" />
     <PackageReference Include="zipkin4net.middleware.aspnetcore" Version="1.2.0" />
   </ItemGroup>
 
