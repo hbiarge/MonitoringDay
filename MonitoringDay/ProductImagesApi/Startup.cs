@@ -62,7 +62,7 @@ namespace ProductImagesApi
             // Prometheus middleware: listen at /metrics endpoint
             app.UsePrometheus(options => options.CollectHttpMetrics());
 
-            //app.UseTracing(applicationName);
+            app.UseTracing("Product-Images-Service");
 
             app.UseMvc();
         }

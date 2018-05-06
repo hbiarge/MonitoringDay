@@ -1,0 +1,15 @@
+apiVersion: extensions/v1beta1
+kind: Ingress
+metadata:
+  name: productimagesapi-ingress
+  labels:
+    app: productimagesapi
+spec:
+  rules:
+  - host: your-host
+    http:
+      paths:
+      - path: /
+        backend:
+          serviceName: productimagesapi-svc
+          servicePort: 80

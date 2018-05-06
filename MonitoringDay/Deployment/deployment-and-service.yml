@@ -1,0 +1,56 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: productimagesapi
+spec:
+  selector:
+    matchLabels:
+      app: productimagesapi
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        app: productimagesapi
+    spec:
+      containers:
+      - name: productimagesapi
+        image: hbiarge/productimagesapi:latest
+        imagePullPolicy: Always
+        env:
+        - name: Zipkin__Collector
+          value: your-zipkin-collector-url
+        readinessProbe:
+          httpGet:
+            scheme: HTTP
+            path: /health
+            port: 80
+          initialDelaySeconds: 30
+          periodSeconds: 10
+          timeoutSeconds: 10
+          successThreshold: 1
+          failureThreshold: 10
+        livenessProbe:
+          httpGet:
+            scheme: HTTP
+            path: /health
+            port: 80
+          initialDelaySeconds: 30
+          periodSeconds: 10
+          timeoutSeconds: 10
+          successThreshold: 1
+          failureThreshold: 10
+        ports:
+        - containerPort: 80
+---
+kind: Service
+apiVersion: v1
+metadata:
+  name: productimagesapi-svc
+spec:
+  selector:
+    app: productimagesapi
+  ports:
+  - name: http
+    protocol: TCP
+    port: 80
+    targetPort: 80
